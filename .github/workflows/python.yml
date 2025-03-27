@@ -1,6 +1,13 @@
 name: "Dinesh github workflow"
 
-on: push
+on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+    workflow_dispatch:  # Enables manual trigger from GitHub UI
 
 jobs:
   Run_Py_Script:
