@@ -3,27 +3,26 @@ name: Send Email on PR creation
 on: push
 
 jobs:
-    mail:
-        runs-on: ubuntu-latest
+  mail:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: print event payload
-              run: echo "Hello World"
+    steps:
+      - name: Print event payload
+        run: echo "Hello World"
 
-            - name: Send email
-              if: always()
-              uses: hilarion5/send-mail@v1
-              with:
-                smtp-server: smtp.example.com
-                smtp-port: 465
-                smtp-secure: true
-                from-email: rdinesh808@gmail.com
-                to-email: rdinesh808@gmail.com, awsdinesh8@gmail.com
-                username: rdinesh808@gmail.com
-                password: nyxa csqs armx hpuj
-                subject: Test Email
-                body: This is a test email sent from GitHub Actions.
-                html: |
-                    <h1>This is a test email</h1>
-                    <p>Test Paragraph</p>
-            
+      - name: Send email
+        if: always()
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.gmail.com
+          smtp-port: 465
+          smtp-secure: ssl  # Use 'ssl' or 'tls'
+          from-email: rdinesh808@gmail.com
+          to-email: rdinesh808@gmail.com, awsdinesh8@gmail.com
+          username: rdinesh808@gmail.com
+          password: ${{ secrets.SMTP_PASSWORD }}  # Use GitHub Secret
+          subject: Test Email
+          body: This is a test email sent from GitHub Actions.
+          html: |
+            <h1>This is a test email</h1>
+            <p>Test Paragraph</p>
